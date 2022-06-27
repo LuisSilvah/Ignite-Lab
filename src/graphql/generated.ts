@@ -5588,6 +5588,11 @@ export type GetLessonsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetLessonsQuery = { __typename?: 'Query', lessons: Array<{ __typename?: 'Lesson', id: string, lessonType: LessonType, availableAt?: any | null, title: string, slug: string }> };
 
+export type GetSubscribersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetSubscribersQuery = { __typename?: 'Query', subscribers: Array<{ __typename?: 'Subscriber', id: string, name: string, email: string }> };
+
 
 export const CreateSubscribeDocument = gql`
     mutation CreateSubscribe($name: String!, $email: String!) {
@@ -5703,3 +5708,39 @@ export function useGetLessonsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
 export type GetLessonsQueryHookResult = ReturnType<typeof useGetLessonsQuery>;
 export type GetLessonsLazyQueryHookResult = ReturnType<typeof useGetLessonsLazyQuery>;
 export type GetLessonsQueryResult = Apollo.QueryResult<GetLessonsQuery, GetLessonsQueryVariables>;
+export const GetSubscribersDocument = gql`
+    query GetSubscribers {
+  subscribers(stage: DRAFT) {
+    id
+    name
+    email
+  }
+}
+    `;
+
+/**
+ * __useGetSubscribersQuery__
+ *
+ * To run a query within a React component, call `useGetSubscribersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSubscribersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSubscribersQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetSubscribersQuery(baseOptions?: Apollo.QueryHookOptions<GetSubscribersQuery, GetSubscribersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetSubscribersQuery, GetSubscribersQueryVariables>(GetSubscribersDocument, options);
+      }
+export function useGetSubscribersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSubscribersQuery, GetSubscribersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetSubscribersQuery, GetSubscribersQueryVariables>(GetSubscribersDocument, options);
+        }
+export type GetSubscribersQueryHookResult = ReturnType<typeof useGetSubscribersQuery>;
+export type GetSubscribersLazyQueryHookResult = ReturnType<typeof useGetSubscribersLazyQuery>;
+export type GetSubscribersQueryResult = Apollo.QueryResult<GetSubscribersQuery, GetSubscribersQueryVariables>;
