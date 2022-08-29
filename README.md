@@ -1,5 +1,5 @@
 ##  Ignite Lab
-##### [Exit](https://github.com/LuisSilvah/Jwt-React)
+##### [Exit](https://github.com/LuisSilvah/Ignite-Lab)
 
 <!-- Check the [demo here](https://event-plataform-luis.vercel.app/) -->
 
